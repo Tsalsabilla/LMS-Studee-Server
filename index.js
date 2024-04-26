@@ -34,19 +34,12 @@ const DashboardRouter = require("./routes/Dashboard.Route");
 
 app.use(express.text());
 app.use(express.json());
-// app.use(cors());
+app.use(cors());
 // app.use(cors({
 //   origin: 'https://lms-studee-client-production.up.railway.app',
 //   methods: ['GET', 'POST', 'PUT', 'DELETE'],
 //   credentials: true
 // }));
-// app.use((req, res, next) => {
-//   res.setHeader("Access-Control-Allow-Origin", "https://lms-studee-client-production.up.railway.app");
-//   res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
-//   res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
-//   res.setHeader("Access-Control-Allow-Credentials", true);
-//   next();
-// });
 
 //routes
 app.get("/", (req, res) => {
