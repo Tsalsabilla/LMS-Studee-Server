@@ -36,8 +36,9 @@ app.use(express.text());
 app.use(express.json());
 // app.use(cors());
 app.use(cors({
-  "origin": ["https://lms-studee-server-production.up.railway.app", "https://lms-studee-client-production.up.railway.app/"],  "methods": ["POST", "GET",  "PUT", "DELETE"],
-  "credentials": true
+  origin: 'https://lms-studee-client-production.up.railway.app',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true
 }));
 
 //routes
