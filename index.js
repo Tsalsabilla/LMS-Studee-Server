@@ -34,12 +34,12 @@ const DashboardRouter = require("./routes/Dashboard.Route");
 
 app.use(express.text());
 app.use(express.json());
-// app.use(cors());
-app.use(cors({
-  origin: 'https://lms-studee-client-production.up.railway.app',
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  credentials: true
-}));
+app.use(cors());
+// app.use(cors({
+//   origin: 'https://lms-studee-client-production.up.railway.app',
+//   methods: ['GET', 'POST', 'PUT', 'DELETE'],
+//   credentials: true
+// }));
 
 //routes
 app.get("/", (req, res) => {
