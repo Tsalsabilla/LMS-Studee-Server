@@ -21,8 +21,8 @@ router.get("/all", async (req, res) => {
 });
 
 // register new students
-router.post("/register", isAuthenticated, async (req, res) => {
-  const { name, email, password } = req.body.data;
+router.post("/register", async (req, res) => {
+  const { name, email, password, studentClass } = req.body;
   try {
     let user = await StudentModel.find({ email });
     if (user.length > 0) {
@@ -33,7 +33,7 @@ router.post("/register", isAuthenticated, async (req, res) => {
     const student = new StudentModel({
       name,
       email,
-      class: req.body.data.class,
+      class: studentClass,
       password,
     });
     await student.save();
