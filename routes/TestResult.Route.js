@@ -64,7 +64,18 @@ router.get('/', async (req, res) => {
     try {
         let query = {};
         // Get the student ID from the query parameters
-        const studentId = req.query.studentId;
+        const {studentId} = req.query;
+
+        let userId = null;
+        const { authorization } = req.headers;
+        if (authorization && authorization.startsWith("Bearer ")) {
+            const token = authorization.slice(7);
+            userId = getUserIdFromToken(token);
+        }
+
+        if (studentId !== userId) {
+            return res.status(401).json({ message: 'Unauthorized' });
+        }
         
         if (studentId) {
             query.studentId = studentId;
