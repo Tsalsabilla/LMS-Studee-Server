@@ -30,6 +30,7 @@ const assignmentRouter = require("./routes/Assignment.Route");
 const testRouter = require("./routes/Test.Route");
 const DoubtRouter = require("./routes/Doubt.Route");
 const DashboardRouter = require("./routes/Dashboard.Route");
+const TestResultRouter = require("./routes/TestResult.Route");
 // const quiz = require('./routes/quiz')
 
 app.use(express.text());
@@ -55,6 +56,7 @@ app.use("/assignment", assignmentRouter);
 app.use("/test", testRouter);
 app.use("/doubt", DoubtRouter);
 app.use("/dashboard", DashboardRouter);
+app.use("/test-result", TestResultRouter);
 // app.use(quiz)
 
 //app listening

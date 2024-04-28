@@ -13,7 +13,38 @@ const { isAuthenticated } = require("../middlewares/authenticate");
 //gel all students data
 router.get("/all", async (req, res) => {
   try {
-    const students = await StudentModel.find();
+    const pipeline = [];
+
+    pipeline.push({
+      $match: {}
+    });
+
+    pipeline.push({
+      $lookup: {
+      from: "testresults",
+      localField: "_id",
+      foreignField: "studentId",
+      as: "testResults",
+      },
+    });
+    pipeline.push({
+      $unwind: {
+      path: "$testResults",
+      preserveNullAndEmptyArrays: true
+      },
+    });
+    pipeline.push({
+      $group: {
+      _id: "$_id",
+      totalScore: { $sum: { $ifNull: ["$testResults.score", 0] } },
+      name: { $first: "$name" },
+      email: { $first: "$email" },
+      class: { $first: "$class" },
+      },
+    });
+
+    const students = await StudentModel.aggregate(pipeline);
+
     res.send({ message: "All students data", students });
   } catch (error) {
     res.status(400).send({ message: "Something went wrong" });
