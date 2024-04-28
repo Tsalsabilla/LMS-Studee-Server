@@ -40,7 +40,13 @@ router.get("/all", async (req, res) => {
       name: { $first: "$name" },
       email: { $first: "$email" },
       class: { $first: "$class" },
-      },
+      }
+    });
+
+    pipeline.push({
+      $sort: {
+        totalScore: -1
+      }
     });
 
     const students = await StudentModel.aggregate(pipeline);
@@ -139,7 +145,7 @@ router.post("/login", async (req, res) => {
       }
       if (password === student[0].password) {
         let token = jwt.sign(
-                { email, name: student[0].name },
+                { email, name: student[0].name, userId: student[0]._id },
                 process.env.secret_key,
                 { expiresIn: "7d" }
               );
