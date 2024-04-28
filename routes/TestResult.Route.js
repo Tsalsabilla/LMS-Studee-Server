@@ -47,7 +47,12 @@ router.post('/', isAuthenticatedUser,  async (req, res) => {
         }
         const newTestResult = new TestResult(testResult.payload);
         await newTestResult.save();
-        res.status(200).json({ message: 'Test result stored successfully' });
+        res.status(200).json({
+            code: 200,
+            status: 'OK',
+            data: newTestResult,
+            message: 'Test result stored successfully'
+        });
     } catch (err) {
         console.error('Error storing test result:', err);
         res.status(500).json({ message: 'Failed to store test result' });
@@ -72,7 +77,12 @@ router.get('/', async (req, res) => {
             return res.status(404).json({ message: 'Test result not found' });
         }
         // Send the test result as the response
-        res.status(200).json(testResult);
+        res.status(200).json({
+            code: 200,
+            status: 'OK',
+            data: testResult,
+            message: 'Test result retrived successfully'
+        });
     } catch (err) {
         console.error('Error retrieving test result:', err);
         res.status(500).json({ message: 'Failed to retrieve test result' });
