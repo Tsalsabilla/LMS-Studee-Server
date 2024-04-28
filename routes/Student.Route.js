@@ -40,6 +40,9 @@ router.get("/all", async (req, res) => {
       name: { $first: "$name" },
       email: { $first: "$email" },
       class: { $first: "$class" },
+      access: { $first: "$access" },
+      createdAt: { $first: "$createdAt" },
+      updatedAt: { $first: "$updatedAt" },
       }
     });
 
