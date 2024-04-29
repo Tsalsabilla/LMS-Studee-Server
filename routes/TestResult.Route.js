@@ -84,25 +84,16 @@ router.get('/', async (req, res) => {
         // Find the test result in the database by student ID
         const testResult = await TestResult.find(query).populate('testId').populate('studentId');
 
-        const finalResult = testResult.map((result) => {
-            if (!result.testId.title) {
-                // Remove this row from the response
-                return null;
-            }
-
-            return result;
-        });
-
 
         // Check if the test result exists
-        if (!finalResult) {
+        if (!testResult) {
             return res.status(404).json({ message: 'Test result not found' });
         }
         // Send the test result as the response
         res.status(200).json({
             code: 200,
             status: 'OK',
-            data: finalResult,
+            data: testResult,
             message: 'Test result retrived successfully'
         });
     } catch (err) {
