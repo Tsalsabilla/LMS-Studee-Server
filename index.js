@@ -37,7 +37,7 @@ app.use(express.text());
 app.use(express.json());
 app.use(cors());
 // app.use(cors({
-//   origin: 'https://lms-studee-client-production.up.railway.app',
+//   origin: 'https://lms-studee-server.vercel.app',
 //   methods: ['GET', 'POST', 'PUT', 'DELETE'],
 //   credentials: true
 // }));
