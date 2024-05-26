@@ -28,16 +28,17 @@
 
 const mongoose = require('mongoose');
 
-const optionSchema = new mongoose.Schema({
-  text: String,
-  imageUrl: String
-});
+// const optionSchema = new mongoose.Schema({
+//   text: String,
+//   imageUrl: String
+// });
 
 const javascriptQuizSchema = new mongoose.Schema({
   testId: String,
   question: String,
-  imageUrl: String,
-  options: [optionSchema], // Menggunakan schema terpisah untuk setiap opsi
+  // imageUrl: String,
+  // options: [optionSchema], // Menggunakan schema terpisah untuk setiap opsi
+  options: Array,
   correctAnswer: String,
 }, { timestamps: true });
 
