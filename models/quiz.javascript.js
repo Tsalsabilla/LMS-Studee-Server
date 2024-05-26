@@ -36,7 +36,7 @@ const mongoose = require('mongoose');
 const javascriptQuizSchema = new mongoose.Schema({
   testId: String,
   question: String,
-  // imageUrl: String,
+  imageUrl: String,
   // options: [optionSchema], // Menggunakan schema terpisah untuk setiap opsi
   options: Array,
   correctAnswer: String,
