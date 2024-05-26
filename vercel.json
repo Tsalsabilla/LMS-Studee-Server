@@ -7,7 +7,7 @@
       { "src": "/(.*)", "dest": "index.js" }
     ],
     "env": {
-      "dbURL": "mongodb://tsalsabilla2009994:tsalsabillanf12@ac-o2rnyyj-shard-00-00.bijdbi0.mongodb.net:27017,ac-o2rnyyj-shard-00-01.bijdbi0.mongodb.net:27017,ac-o2rnyyj-shard-00-02.bijdbi0.mongodb.net:27017/?replicaSet=atlas-144sys-shard-0&ssl=true&authSource=admin&authMechanism=SCRAM-SHA-1",
+      "dbURL": "mongodb://tsalsabilla2009994:tsalsabillanf12@ac-o2rnyyj-shard-00-00.bijdbi0.mongodb.net:27017,ac-o2rnyyj-shard-00-01.bijdbi0.mongodb.net:27017,ac-o2rnyyj-shard-00-02.bijdbi0.mongodb.net:27017/studee?replicaSet=atlas-144sys-shard-0&ssl=true&authSource=admin&authMechanism=SCRAM-SHA-1",
       "port": "4500"
     }
   }
