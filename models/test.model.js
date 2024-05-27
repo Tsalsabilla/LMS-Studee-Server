@@ -4,8 +4,6 @@ const testSchema = mongoose.Schema(
   {
     title: String,
     class: String,
-    // subject: String,
-    // type: String,
     creator: String,
     fileUrl: String,
     fileType: String,

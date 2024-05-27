@@ -1,11 +1,8 @@
-//imports
 require("dotenv").config();
 const express = require("express");
 const app = express();
-//const { connection } = require("./configs/db");
 const cors = require("cors");
 const mongoose = require("mongoose");
-// mongoose.set("strictQuery", false);
 
 mongoose.connect(process.env.dbURL)
 .then(() => {
@@ -16,10 +13,8 @@ mongoose.connect(process.env.dbURL)
   process.exit();
 });
 
-//port
 const PORT = process.env.port || 8080;
 
-//routes imports
 const adminRouter = require("./routes/Admins.Route");
 const studentRouter = require("./routes/Student.Route");
 const tutorRouter = require("./routes/Tutor.Route");
@@ -34,18 +29,11 @@ const DoubtzRouter = require("./routes/Doubtz.Route");
 
 const DashboardRouter = require("./routes/Dashboard.Route");
 const TestResultRouter = require("./routes/TestResult.Route");
-// const quiz = require('./routes/quiz')
 
 app.use(express.text());
 app.use(express.json());
 app.use(cors());
-// app.use(cors({
-//   origin: 'https://lms-studee-server.vercel.app',
-//   methods: ['GET', 'POST', 'PUT', 'DELETE'],
-//   credentials: true
-// }));
 
-//routes
 app.get("/", (req, res) => {
   res.send("Home Route");
 });
@@ -62,9 +50,7 @@ app.use("/doubtx", DoubtxRouter);
 app.use("/doubtz", DoubtzRouter);
 app.use("/dashboard", DashboardRouter);
 app.use("/test-result", TestResultRouter);
-// app.use(quiz)
 
-//app listening
 app.listen(PORT, async () => {
   console.log(`Listening at port ${PORT}`);
 });

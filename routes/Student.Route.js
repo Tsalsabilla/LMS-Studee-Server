@@ -4,13 +4,10 @@ const bcrypt = require("bcrypt");
 const router = express.Router();
 const nodemailer = require("nodemailer");
 
-//model import
 const { StudentModel } = require("../models/student.model");
 
-//middleware import
 const { isAuthenticated } = require("../middlewares/authenticate");
 
-//gel all students data
 router.get("/all", async (req, res) => {
   try {
     const pipeline = [];
@@ -60,13 +57,11 @@ router.get("/all", async (req, res) => {
   }
 });
 
-// register new students
 router.post("/register", async (req, res) => {
   const { name, email, password, studentClass } = req.body;
   try {
     let user = await StudentModel.find({ email });
     if (user.length > 0) {
-      // return res.send({ msg: "User already registered" });
       return res.status(400).send({ msg: "User already registered" });
     }
 
@@ -83,60 +78,12 @@ router.post("/register", async (req, res) => {
       msg: "Student Registered Successfully",
       student: newStudent[0],
     });
-
-    // bcrypt.hash(
-    //   password,
-    //   +process.env.Salt_rounds,
-    //   async (err, secure_password) => {
-    //     if (err) {
-    //       console.log(err);
-    //     } else {
-    //       const student = new StudentModel({
-    //         name,
-    //         email,
-    //         class: req.body.data.class,
-    //         password: secure_password,
-    //       });
-    //       await student.save();
-    //       let newStudent = await StudentModel.find({ email });
-
-    //       const transporter = nodemailer.createTransport({
-    //         service: "gmail",
-    //         auth: {
-    //           user: "agrawaljoy1@gmail.com",
-    //           pass: "nsziioprjzwcodlm",
-    //         },
-    //       });
-
-    //       const mailOptions = {
-    //         from: "agrawaljoy1@gmail.com",
-    //         to: email,
-    //         subject: "Account ID and Password",
-    //         text: `Welcome to Studee, Congratulations,Your account has been created successfully.This is your User type : Student and Password : ${password}  `,
-    //       };
-
-    //       transporter.sendMail(mailOptions, (error, info) => {
-    //         if (error) {
-    //           return res.send({ msg: "error" });
-    //         }
-    //         res.send({ msg: "Password sent" });
-    //       });
-
-    //       res.send({
-    //         msg: "Student Registered Successfully",
-    //         student: newStudent[0],
-    //       });
-    //     }
-    //   }
-    // );
   } catch (err) {
-    // res.status(404).send({ msg: "Student Registration failed" });
-    console.error(err); // Log the error for debugging purposes
+    console.error(err);
     res.status(500).send({ msg: "Student Registration failed" });
   }
 });
 
-//student login
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
 
@@ -158,22 +105,6 @@ router.post("/login", async (req, res) => {
                 token,
               });
             }
-      // bcrypt.compare(password, student[0].password, (err, results) => {
-      //   if (results) {
-      //     let token = jwt.sign(
-      //       { email, name: student[0].name },
-      //       process.env.secret_key,
-      //       { expiresIn: "7d" }
-      //     );
-      //     res.send({
-      //       message: "Login Successful",
-      //       user: student[0],
-      //       token,
-      //     });
-      //   } else {
-      //     res.status(201).send({ message: "Wrong credentials" });
-      //   }
-      // });
     } else {
       res.send({ message: "Wrong credentials" });
     }
@@ -182,7 +113,6 @@ router.post("/login", async (req, res) => {
   }
 });
 
-//edit student
 router.patch("/:studentId", isAuthenticated, async (req, res) => {
   const { studentId } = req.params;
   const payload = req.body.data;
@@ -200,7 +130,6 @@ router.patch("/:studentId", isAuthenticated, async (req, res) => {
   }
 });
 
-//delete student
 router.delete("/:studentId", async (req, res) => {
   const { studentId } = req.params;
   try {
