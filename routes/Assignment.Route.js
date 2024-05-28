@@ -1,13 +1,10 @@
 const express = require("express");
 const router = express.Router();
 
-//model import
 const { AssignmentModel } = require("../models/assignment.model");
 
-//middleware import
 const { isAuthenticated } = require("../middlewares/authenticate");
 
-//get all assignment data route
 router.get("/all", async (req, res) => {
   try {
     const assignment = await AssignmentModel.find();
@@ -17,7 +14,6 @@ router.get("/all", async (req, res) => {
   }
 });
 
-//get single data route
 router.get("/:assignmentId", async (req, res) => {
   const { assignmentId } = req.params;
   try {
@@ -28,7 +24,6 @@ router.get("/:assignmentId", async (req, res) => {
   }
 });
 
-//create new assignment route
 router.post("/create", isAuthenticated, async (req, res) => {
   try {
     const assignment = new AssignmentModel(req.body.data);
@@ -39,7 +34,6 @@ router.post("/create", isAuthenticated, async (req, res) => {
   }
 });
 
-// edit assignment route
 router.patch("/:assignmentId", isAuthenticated, async (req, res) => {
   const { assignmentId } = req.params;
   const payload = req.body.data;
@@ -57,7 +51,6 @@ router.patch("/:assignmentId", isAuthenticated, async (req, res) => {
   }
 });
 
-//delete assignment route
 router.delete("/:assignmentId", async (req, res) => {
   const { assignmentId } = req.params;
   try {
