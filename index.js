@@ -43,7 +43,7 @@ app.use("/tutor", tutorRouter);
 app.use("/student", studentRouter);
 app.use("/scratch", scratchRouter);
 app.use("/lesson", lessonRouter);
-app.use("/lessonx", lessonxRouter);
+app.use("/", lessonxRouter);
 
 app.use("/content", contentRouter);
 app.use("/assignment", assignmentRouter);
