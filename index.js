@@ -20,6 +20,7 @@ const studentRouter = require("./routes/Student.Route");
 const tutorRouter = require("./routes/Tutor.Route");
 const scratchRouter = require("./routes/Scratch.Route");
 const lessonRouter = require("./routes/Lesson.Route");
+const lessonxRouter = require("./routes/Lessonx.Route");
 const contentRouter = require("./routes/Content.Route");
 const assignmentRouter = require("./routes/Assignment.Route");
 const testRouter = require("./routes/Test.Route");
@@ -42,6 +43,8 @@ app.use("/tutor", tutorRouter);
 app.use("/student", studentRouter);
 app.use("/scratch", scratchRouter);
 app.use("/lesson", lessonRouter);
+app.use("/", lessonxRouter);
+
 app.use("/content", contentRouter);
 app.use("/assignment", assignmentRouter);
 app.use("/test", testRouter);
