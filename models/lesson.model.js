@@ -18,6 +18,7 @@ const lessonSchema = mongoose.Schema(
     questionData: Array,
     totalPoint: Number,
     totalTime: Number,
+    resolved: { type: String, default: "No" },
   },
   { versionKey: false, timestamps: true }
 );
