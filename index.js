@@ -44,7 +44,6 @@ app.use("/student", studentRouter);
 app.use("/scratch", scratchRouter);
 app.use("/lesson", lessonRouter);
 app.use("/", lessonxRouter);
-
 app.use("/content", contentRouter);
 app.use("/assignment", assignmentRouter);
 app.use("/test", testRouter);
