@@ -33,7 +33,7 @@ router.get("/all", async (req, res) => {
     pipeline.push({
       $group: {
       _id: "$_id",
-      totalScore: { $sum: { $ifNull: ["$testResults.score", 100] } },
+      totalScore: { $sum: { $ifNull: ["$testResults.score", 87] } },
       name: { $first: "$name" },
       email: { $first: "$email" },
       class: { $first: "$class" },
