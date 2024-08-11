@@ -36,6 +36,7 @@ const studentSchema = mongoose.Schema(
     averageTime: { type: Number, default: 0 },
     scratchIds: [{ type: String }],
     scratchDetails: [{ type: Object }],
+    totalScore: { type: Number, default: 0 },
   },
   { versionKey: false, timestamps: true }
 );
